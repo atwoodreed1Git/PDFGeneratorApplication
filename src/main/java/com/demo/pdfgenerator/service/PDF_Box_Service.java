@@ -1,14 +1,14 @@
 package com.demo.pdfgenerator.service;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-
-@RestController
+@Service
 public class PDF_Box_Service {
-    public String getPDFRequest() {
 
-        return "Hi from the pdf Service";
+    public int getPDFRequest(int numberOfImagesToProcess) {
+
+        return numberOfImagesToProcess;
     }
 
 }
