@@ -15,8 +15,11 @@ public class PDF_Controller {
     private PDF_Box_Service pdf_box_service;
 
     @GetMapping("/pdfBox/{numberOfImagesToProcess}")
-    public int getPDFRequest(@PathVariable int numberOfImagesToProcess) {
+    public String getPDFRequest(@PathVariable int numberOfImagesToProcess) {
 
+        if (numberOfImagesToProcess <= 0) {
+            return "Number must be greater than 0";
+        }
         return pdf_box_service.getPDFRequest(numberOfImagesToProcess);
     }
 }
