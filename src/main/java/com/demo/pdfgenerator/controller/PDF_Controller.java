@@ -19,7 +19,7 @@ public class PDF_Controller {
     private long endTime;
 
     @GetMapping("/pdfBox/{numberOfImagesToProcess}")
-    public String getPDFRequest(@PathVariable int numberOfImagesToProcess) {
+    public String createPDFofImagesBySpecifiedNumberOfImages(@PathVariable int numberOfImagesToProcess) {
 
         String results = "";
         boolean isComplete = false;
@@ -61,7 +61,7 @@ public class PDF_Controller {
         } else {
             res = String.format("%dd %02d hours %02d min %02d sec .%04d", days, hours, minutes, seconds, millis);
         }
-        
+
         return res;
     }
 }
