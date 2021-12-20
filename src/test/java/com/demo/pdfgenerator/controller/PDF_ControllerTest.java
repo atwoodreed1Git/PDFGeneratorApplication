@@ -22,8 +22,4 @@ class PDF_ControllerTest {
 //        String response = pdf_controller.createPDFofImagesBySpecifiedNumberOfImages(1000);
 ////        assertTrue("1000 PDF Pages Created in".contains(response));
 //    }
-
-    @Test
-    void millisToShortDHMS() {
-    }
 }
