@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.concurrent.TimeUnit;
+//import javax.servlet.http.HttpServletResponse;
+//import java.io.IOException;
 
 @RequestMapping("/pdf")
 @RestController
@@ -44,4 +45,18 @@ public class PDF_Controller {
 
         return results;
     }
+
+    // TODO: 12/20/2021 example get service call
+//    @RequestMapping("/pdf/generate")
+//    public void generatePDF(HttpServletResponse response) throws IOException {
+//        response.setContentType("application/pdf");
+//        String fileName = "Testing.pdf";
+//
+//        String headerKey = "Content-Disposition";
+//        String headerValue = "attachment; filename=pdf_" + fileName + ".pdf";
+//
+//        response.setHeader(headerKey, headerValue);
+//
+//        this.pdf_box_service.createPDF(response);
+//    }
 }

@@ -1,6 +1,10 @@
 package com.demo.pdfgenerator.service;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 
 /**
  PDF rendering
@@ -13,10 +17,15 @@ import org.springframework.stereotype.Service;
  be careful not to hold your images after rendering them, e.g. avoid putting all images of a PDF into a List
  don't forgot to close your PDDocument objects
  decrease the scale when calling PDFRenderer.renderImage(), or the dpi value when calling PDFRenderer.renderImageWithDPI()
- disable the cache for PDImageXObject objects by calling PDDocument.setResourceCache() with a cache object that is derived from DefaultResourceCache and whose call public void put(COSObject indirect, PDXObject xobject) does nothing. Be aware that this will slow down rendering for PDF files that have an identical image in several pages (e.g. a company logo or a background). More about this can be read in PDFBOX-3700.
+ disable the cache for PDImageXObject objects by calling PDDocument.setResourceCache() with a cache object that is derived
+ from DefaultResourceCache and whose call public void put(COSObject indirect, PDXObject xObject) does nothing. Be aware
+ that this will slow down rendering for PDF files that have an identical image in several pages (e.g. a company logo or
+ a background). More about this can be read in PDFBOX-3700.
  ***/
 @Service
 public class PDF_Box_Service {
+
+    private static final String PATH_TO_SAVED_PDF_FILE = "C:\\Projects\\TestProjects\\pdfs\\test.pdf";
 
     public boolean getPDFRequest(int numberOfImagesToProcess) {
 
@@ -29,8 +38,21 @@ public class PDF_Box_Service {
             return true;
 
         } catch (Exception error) {
-            System.err.println(error);
+            error.printStackTrace();
             return false;
         }
+    }
+
+    public void createPDF(int numberOfImagesToProcess) throws IOException {
+        PDDocument document = new PDDocument();
+        PDPage firstPage = new PDPage();
+
+        document.addPage(firstPage);
+
+        document.save(PATH_TO_SAVED_PDF_FILE);
+
+        System.out.println("PDF Created from " + numberOfImagesToProcess + " images");
+
+        document.close();
     }
 }
